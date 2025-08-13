@@ -28,7 +28,8 @@ class WebSocketServer:
         
         try:
             async for message in websocket:
-                await self.process_message(message, websocket)
+                await self.broadcast(message)
+                # print(f"Received message: {message}")
         except websockets.exceptions.ConnectionClosed:
             print(f"Client disconnected from {websocket.remote_address}")
         finally:
